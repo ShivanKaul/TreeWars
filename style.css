@@ -1,0 +1,24 @@
+.tile {
+	background-color: #abcde1;
+	height: 50px;
+	width: 50px;
+	float: left;
+	
+	border-style: solid;
+    border-color: #ffffff;
+}
+
+.taken{
+	
+	height: 50px;
+	width: 50px;
+	float: left;
+	
+	border-style: solid;
+    border-color: #ffffff;
+	background-color: #000000;
+}
+
+.tile:hover{
+	background-color: #abbbb1;
+}

@@ -23,7 +23,7 @@ include 'connect.php';
 
 session_start();
 
-if(!isset($_SESSION['signed_in']))
+if($_SESSION['signed_in'] == false)
 {
 	{
 		if($_SERVER['REQUEST_METHOD'] != 'POST')
@@ -101,7 +101,12 @@ if(!isset($_SESSION['signed_in']))
 }
 else
 {
+	
 	echo 'Hello ' . $_SESSION['user_name'] . '. Not you? <a href="signout.php">Sign out</a>.';
+	echo '<br> <a href="plant.php">Plant a tree</a>?';
+	echo '<br> <a href="team.php">Create a team</a>?';	
+	
 }
+echo '<br>test '. $_SESSION['user_name'] .' test';
 ?></div>
 <div id="content">
