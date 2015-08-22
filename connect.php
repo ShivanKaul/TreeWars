@@ -1,10 +1,11 @@
 <?php 
 
-$pword = fopen("pword.txt", "r") or die("Unable to open file!");
+$pword = fopen("word.txt", "r") or die("Unable to open file!");
+
 
 $server = 'localhost';
 $username = 'teamtreewars';
-$password = fread($pword,filesize("pword.txt"));
+$password = fread($pword,filesize("word.txt"));
 $database = 'treewars';
 
 fclose($pword);
