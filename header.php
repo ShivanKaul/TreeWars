@@ -7,7 +7,7 @@
 <meta name="description" content="" />
 <meta name="keywords" content="tree, trees, environment, green" />
 <title>Tree wars</title>
-<link rel="stylesheet" href="" type="text/css">
+<link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
 <h1></h1>
@@ -23,7 +23,7 @@ include 'connect.php';
 
 session_start();
 
-if(!isset($_SESSION['signed_in']))
+if(empty($_SESSION['signed_in']))
 {
 	{
 		if($_SERVER['REQUEST_METHOD'] != 'POST')
@@ -83,7 +83,12 @@ if(!isset($_SESSION['signed_in']))
 				}
 				else
 				{
-					
+					if($sql->rowCount() == 0)
+					{
+						echo 'Wrong username and/or password! :(';
+					}
+					else
+					{
 						$_SESSION['signed_in'] = true;
 						
 						while($row = $sql->fetch(PDO::FETCH_ASSOC))
@@ -93,7 +98,8 @@ if(!isset($_SESSION['signed_in']))
 							$_SESSION['is_admin']	= $row['is_admin'];
 						}
 						
-						echo 'Welcome, ' . $_SESSION['user_name'] . '. <a href="index.php">Proceed to the forum overview</a>?.';
+					echo 'Welcome, ' . $_SESSION['user_name'] . '. <a href="index.php">Proceed to the forum overview</a>?.';
+					}
 				}
 			}
 		}
@@ -101,7 +107,11 @@ if(!isset($_SESSION['signed_in']))
 }
 else
 {
+	
 	echo 'Hello ' . $_SESSION['user_name'] . '. Not you? <a href="signout.php">Sign out</a>.';
+	echo '<br> <a href="plant.php">Plant a tree</a>?';
+	echo '<br> <a href="team.php">Create a team</a>?';	
+	
 }
 ?></div>
 <div id="content">
