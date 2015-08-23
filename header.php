@@ -107,6 +107,5 @@ else
 	echo '<br> <a href="team.php">Create a team</a>?';	
 	
 }
-echo '<br>test '. $_SESSION['user_name'] .' test';
 ?></div>
 <div id="content">
