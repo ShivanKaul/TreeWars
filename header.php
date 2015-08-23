@@ -64,6 +64,7 @@ if(empty($_SESSION['signed_in']))
 					SELECT
 						user_id,
 						user_name,
+						user_team,
 						is_admin
 					FROM
 						users
@@ -95,6 +96,7 @@ if(empty($_SESSION['signed_in']))
 						{
 							$_SESSION['user_id']	= $row['user_id'];
 							$_SESSION['user_name']	= $row['user_name'];
+							$_SESSION['user_team']	= $row['user_team'];
 							$_SESSION['is_admin']	= $row['is_admin'];
 						}
 						

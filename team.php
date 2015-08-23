@@ -42,7 +42,44 @@ if($_SESSION['signed_in'] == true)
 		
 		$sql->execute();
 		
+		$sql2 = $connection->prepare
+		("
+					SELECT
+						team_id,
+						team_name
+					FROM
+						teams
+					WHERE
+						team_name = :team_name
+					
+		");
 		
+		$sql2->bindParam(':team_name', $_POST['team_name']);
+		
+		$sql2->execute();
+		
+		while($row = $sql2->fetch(PDO::FETCH_ASSOC))
+						{
+							$_SESSION['team_id']	= $row['team_id'];
+							$_SESSION['team_name']	= $row['team_name'];
+						}
+						
+		$sql3 = $connection->prepare
+		("			
+					UPDATE 
+						users
+					SET 
+						user_team=:team_id
+					WHERE 
+						user_id=:user_id
+		");
+		
+		$sql3->bindParam(':team_id', $_SESSION['team_id']);
+		$sql3->bindParam(':user_id', $_SESSION['user_id']);
+		
+		$sql3->execute();
+		
+		echo 'Team successfully created! Go '. $_POST['team_name'] .'!';
 	}
 	
 }

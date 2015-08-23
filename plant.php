@@ -16,7 +16,7 @@ if($_SESSION['signed_in'] == true)
 		echo 	'Where would you like to plant your tree? <br>';
 
 		$count0 = 0;
-		$count1 = 0;
+		$count1 = 1;
 		
 		$sql = $connection->prepare
 		("
@@ -37,17 +37,52 @@ if($_SESSION['signed_in'] == true)
 			$trees_array = array("Nothing"=>"to see here");
 		}
 		
-		print_r($trees_array);
-		
-		while($count1 < 10){
+					$sql2 = $connection->prepare
+					("
+					SELECT
+						trees.coordinates, users.user_id, teams.team_id
+					FROM
+						trees
+					LEFT JOIN
+						users
+					ON
+						trees.tree_owner=users.user_id
+					LEFT JOIN
+						teams
+					ON
+						users.user_team=teams.team_id
+					");
+					$sql2->execute();
+					
+					$team_array = array();
+										
+					while($array = $sql2->fetch(PDO::FETCH_ASSOC))
+					{
+						$team_array[] = $array;
+					}
+					
+					$user_ids = array_column($team_array, 'user_id', 'coordinates');					
+					$team_ids = array_column($team_array, 'team_id', 'coordinates');
+				
+		while($count1 < 11){
 			
-			$count2 = 0;
+			$count2 = 1;
 			
-			while($count2 <10){
+			while($count2 <11){
 				
 				if(in_array($count1 .''. $count2, $trees_array) ){
-					echo '<div id="'. $count1 .''. $count2 .'" class="taken"></div>';
-					$count2++;
+										
+					if($_SESSION['user_id'] == $user_ids[$count1 . $count2] 
+					|| $_SESSION['user_team'] == $team_ids[$count1 . $count2])
+					{
+						echo '<div id="'. $count1 .''. $count2 .'" class="friend"></div>';
+						$count2++;	
+					}
+					else
+					{
+						echo '<div id="'. $count1 .''. $count2 .'" class="foe"></div>';
+						$count2++;
+					}
 				}
 				else
 				{
@@ -89,7 +124,6 @@ if($_SESSION['signed_in'] == true)
 		$sql->execute();
 		
 		echo 'Tree successfully planted!! :D';
-		echo gettype($tiles) .' '. $_POST['tree_name'];
 		}
 	}
 }
@@ -99,25 +133,3 @@ else
 }
 
 ?>
-
-<script>
-function funk() {
-	<?php
-	
-	$sql = $connection->prepare
-	("
-			INSERT INTO
-				trees(coordinates, tree_name, tree_date, tree_owner)
-			VALUES
-				(:coordinate, :tree_name, NOW(), :tree_owner)
-		");
-	
-	$sql->bindParam(':coordinates', $_POST['']);
-	$sql->bindParam(':tree_name', $_POST['']);
-	$sql->bindParam(':tree_owner', $_SESSION['user']);
-	
-	$sql->execute();
-	
-	?>
-}
-</script>

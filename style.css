@@ -8,7 +8,7 @@
     border-color: #ffffff;
 }
 
-.taken{
+.friend{
 	
 	height: 50px;
 	width: 50px;
@@ -16,7 +16,18 @@
 	
 	border-style: solid;
     border-color: #ffffff;
-	background-color: #000000;
+	background-color: #66FF66;
+}
+
+.foe{
+	
+	height: 50px;
+	width: 50px;
+	float: left;
+	
+	border-style: solid;
+    border-color: #ffffff;
+	background-color: #FF9999;
 }
 
 .tile:hover{

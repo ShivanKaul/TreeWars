@@ -87,7 +87,6 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST')
 		$sql->execute();
 		
 		echo 'Registration successful! :D';
-		echo sha1($_POST['user_pass']);
 		
 	}
 	
