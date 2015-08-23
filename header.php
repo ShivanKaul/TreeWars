@@ -23,7 +23,7 @@ include 'connect.php';
 
 session_start();
 
-if(!isset($_SESSION['signed_in']))
+if(empty($_SESSION['signed_in']))
 {
 	{
 		if($_SERVER['REQUEST_METHOD'] != 'POST')
