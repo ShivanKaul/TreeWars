@@ -83,7 +83,12 @@ if(empty($_SESSION['signed_in']))
 				}
 				else
 				{
-					
+					if($sql->rowCount() == 0)
+					{
+						echo 'Wrong username and/or password! :(';
+					}
+					else
+					{
 						$_SESSION['signed_in'] = true;
 						
 						while($row = $sql->fetch(PDO::FETCH_ASSOC))
@@ -93,7 +98,8 @@ if(empty($_SESSION['signed_in']))
 							$_SESSION['is_admin']	= $row['is_admin'];
 						}
 						
-						echo 'Welcome, ' . $_SESSION['user_name'] . '. <a href="index.php">Proceed to the forum overview</a>?.';
+					echo 'Welcome, ' . $_SESSION['user_name'] . '. <a href="index.php">Proceed to the forum overview</a>?.';
+					}
 				}
 			}
 		}
