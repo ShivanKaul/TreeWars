@@ -8,15 +8,33 @@ include 'connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] != 'POST')
 {
-	echo '<form method="post" action="">
-        Username: <input type="text" name="user_name" />
-        Password: <input type="password" name="user_pass">
-        Password again: <input type="password" name="user_pass_check">
-        E-mail: <input type="email" name="user_email">
-        <input type="submit" value="Register!" />
-     </form>';
+	echo '<html>
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+  <link href="css/signup.css" rel="stylesheet">
+</head>
+<body>
+  <div class="testbox">
+    <h1>Registration</h1>
+
+    <form method="post" action="">
+      
+      <label id="icon" for="name"><i class="icon-envelope "></i></label>
+      <input type="text" name="user_email" id="name" placeholder="Email" required/>
+      <label id="icon" for="name"><i class="icon-user"></i></label>
+      <input type="text" name="user_name" id="name" placeholder="Name" required/>
+      <label id="icon" for="name"><i class="icon-shield"></i></label>
+      <input type="password" name="user_pass" id="name" placeholder="Password" required/>
+      <input type="password" name="user_pass_check" id="name" placeholder="Password again" required/>
+        <input type="submit" class="button" value="Register!" />
+      
+    </form>
+  </div>
+</body>
+</html>';
 } else {
-	$errors = array();
+	$errors = array();j
 	
 	if(isset($_POST['user_name']))
 	{
