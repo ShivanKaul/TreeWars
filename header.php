@@ -7,7 +7,7 @@
 <meta name="description" content="" />
 <meta name="keywords" content="tree, trees, environment, green" />
 <title>Tree wars</title>
-<link rel="stylesheet" href="" type="text/css">
+<link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
 <h1></h1>
@@ -23,7 +23,7 @@ include 'connect.php';
 
 session_start();
 
-if($_SESSION['signed_in'] == false)
+if(!isset($_SESSION['signed_in']))
 {
 	{
 		if($_SERVER['REQUEST_METHOD'] != 'POST')
