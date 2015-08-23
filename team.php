@@ -1,5 +1,12 @@
 <title>Create your team!</title>
 
+<?php
+
+include 'connect.php';
+include 'header.php';
+
+?>
+
 <form method="POST" action="">
 Team name:<br>
 <input type="text" name="team_name">
@@ -14,14 +21,8 @@ Team description:<br>
 
 <?php
 
-include 'connect.php';
-include 'header.php';
-
 if($_SESSION['signed_in'] == true)
 {
-	echo $_POST['team_name'];
-	echo $_POST['team_school'];
-	echo $_POST['team_description'];
 	
 	if(	isset($_POST['team_name']) && 
 		isset($_POST['team_school']) && 
